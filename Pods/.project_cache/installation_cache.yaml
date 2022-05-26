@@ -1,0 +1,34 @@
+BUILD_CONFIGURATIONS:
+  Debug: :debug
+  Release: :release
+CACHE_KEYS:
+  Pods-PDF-Demo:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 18d1eb5d4310d30908b939254486ab42
+      Release: 18d1eb5d4310d30908b939254486ab42
+  SnapKit:
+    BUILD_SETTINGS_CHECKSUM:
+      SnapKit:
+        :debug: 2cfd3330637989ee241e241c0303b833
+        :release: 2cfd3330637989ee241e241c0303b833
+    CHECKSUM: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+    PROJECT_NAME: SnapKit
+    SPECS:
+      - SnapKit (5.6.0)
+INSTALLATION_OPTIONS:
+  clean: true
+  deduplicate_targets: true
+  deterministic_uuids: true
+  disable_input_output_paths: false
+  generate_multiple_pod_projects: true
+  incremental_installation: true
+  integrate_targets: true
+  lock_pod_sources: true
+  preserve_pod_file_structure: false
+  share_schemes_for_development_pods: false
+  skip_pods_project_generation: false
+  warn_for_multiple_pod_sources: true
+  warn_for_unused_master_specs_repo: false
+OBJECT_VERSION: 48
+PLUGINS:
+  {}
