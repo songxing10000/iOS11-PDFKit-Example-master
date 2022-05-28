@@ -21,7 +21,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private var leftSwipeGesture: UISwipeGestureRecognizer?
     private var rightSwipeGesture: UISwipeGestureRecognizer?
-
+    
     override var shouldAutorotate: Bool {
         return true
     }
@@ -39,9 +39,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         view.addSubview(pdfContentView)
+        // 16/9=w/?
+        let desH = (UIScreen.main.bounds.size.width*9.0/16.0)
         pdfContentView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(0)
-            make.height.equalTo(250)
+            
+            make.height.equalTo(desH)
             make.top.equalTo(view.snp_topMargin)
         }
         
@@ -54,16 +57,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         pdfContentView.addSubview(pdfview)
         pdfContentView.addSubview(pdfThumbView)
         
- 
-       
+        view.backgroundColor = .white
+        pdfContentView.backgroundColor =  .white
+        
+        
         pdfview.snp.remakeConstraints { make in
             make.edges.equalTo(pdfContentView)
         }
-         
+        
         pdfThumbView.snp.remakeConstraints { make in
             make.leading.trailing.equalTo(pdfview)
-            make.height.equalTo(50)
-            make.bottom.equalTo(pdfview.snp.bottom)
+            make.height.equalTo(40)
+             make.bottom.equalTo(pdfview.snp.bottom)
         }
         
         m_btn.snp.remakeConstraints { make in
@@ -76,15 +81,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(pdfview)
         view.addSubview(pdfThumbView)
         
- 
-       
+        view.backgroundColor = .black
+        pdfContentView.backgroundColor =  .black
+        
         pdfview.snp.remakeConstraints { make in
             make.edges.equalTo(view)
+            
         }
-         
+        
         pdfThumbView.snp.remakeConstraints { make in
             make.leading.trailing.equalTo(pdfview)
-            make.height.equalTo(50)
+            make.height.equalTo(40)
             make.bottom.equalTo(pdfview.snp.bottom)
         }
         view.bringSubviewToFront(m_btn)
@@ -123,12 +130,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     private func buildPdfThumbView() -> PDFThumbnailView {
         let view  = PDFThumbnailView()
         view.layoutMode = .horizontal
+        view.thumbnailSize = CGSize(width: 24, height: 32)
         view.pdfView = pdfview
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }
     private func buildPdfdocument() -> PDFDocument? {
-        guard let url = Bundle.main.url(forResource: "sample", withExtension: "pdf") else {
+        guard let url = Bundle.main.url(forResource: "【ppt】工程行为守则与工程行为规范标准培训", withExtension: "pdf") else {
             return nil
         }
         let doc = PDFDocument(url: url)
@@ -144,54 +152,56 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         pdf.displayMode = .singlePage
         pdf.displayDirection = .horizontal
         pdf.autoScales = true
-        //setting swipe gesture
-                leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondLeftSwipeGesture ))
-                leftSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.left]
+        
+        // 添加左右滑动手势
+        leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondLeftSwipeGesture ))
+        leftSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.left]
         pdf.addGestureRecognizer(leftSwipeGesture!)
-                
-                rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondRightSwipeGesture ))
-                rightSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.right]
+        
+        rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondRightSwipeGesture ))
+        rightSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.right]
         pdf.addGestureRecognizer(rightSwipeGesture!)
         
         leftSwipeGesture?.delegate = self
-            leftSwipeGesture?.cancelsTouchesInView = false
-            rightSwipeGesture?.delegate = self
-            rightSwipeGesture?.cancelsTouchesInView = false
+        leftSwipeGesture?.cancelsTouchesInView = false
+        rightSwipeGesture?.delegate = self
+        rightSwipeGesture?.cancelsTouchesInView = false
         return pdf
     }
+    // MARK: - 左中滑动手势切换页码
     @objc func respondLeftSwipeGesture(_ sender: UISwipeGestureRecognizer) {
         if pdfview.document == nil { return }
-               let scaleOfPdf = pdfview.scaleFactor
+        let scaleOfPdf = pdfview.scaleFactor
         pdfview.goToNextPage(self)
         pdfview.scaleFactor = scaleOfPdf
-        }
-        
-        @objc func respondRightSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-            if pdfview.document == nil { return }
-            let scaleOfPdf = pdfview.scaleFactor
-            pdfview.goToPreviousPage(self)
-            pdfview.scaleFactor = scaleOfPdf
-        }
-    
-     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                                    shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return gestureRecognizer == leftSwipeGesture
-            || gestureRecognizer == rightSwipeGesture
-            || otherGestureRecognizer == leftSwipeGesture
-            || otherGestureRecognizer == rightSwipeGesture
     }
-     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                                    shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    
+    @objc func respondRightSwipeGesture(_ sender: UISwipeGestureRecognizer) {
+        if pdfview.document == nil { return }
+        let scaleOfPdf = pdfview.scaleFactor
+        pdfview.goToPreviousPage(self)
+        pdfview.scaleFactor = scaleOfPdf
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return gestureRecognizer == leftSwipeGesture
+        || gestureRecognizer == rightSwipeGesture
+        || otherGestureRecognizer == leftSwipeGesture
+        || otherGestureRecognizer == rightSwipeGesture
+    }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let _ = gestureRecognizer as? UIPanGestureRecognizer else { return false }
         return otherGestureRecognizer == leftSwipeGesture
-            || otherGestureRecognizer == rightSwipeGesture
+        || otherGestureRecognizer == rightSwipeGesture
     }
-     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                                    shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let _ = otherGestureRecognizer as? UIPanGestureRecognizer else { return false }
         return gestureRecognizer == leftSwipeGesture
-            || gestureRecognizer == rightSwipeGesture
+        || gestureRecognizer == rightSwipeGesture
     }
 }
 
- 
+

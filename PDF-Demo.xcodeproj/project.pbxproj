@@ -12,8 +12,8 @@
 		3FEBE30A1F01E84F00DE2722 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEBE3081F01E84F00DE2722 /* Main.storyboard */; };
 		3FEBE30C1F01E84F00DE2722 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FEBE30B1F01E84F00DE2722 /* Assets.xcassets */; };
 		3FEBE30F1F01E84F00DE2722 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FEBE30D1F01E84F00DE2722 /* LaunchScreen.storyboard */; };
-		3FF14BFB24AB2CCE001209ED /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3FF14BFA24AB2CCE001209ED /* sample.pdf */; };
 		982A6E4F283F5B8C00AEA03E /* NSObject+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 982A6E4E283F5B8C00AEA03E /* NSObject+Ext.m */; };
+		982A6EBF2840758500AEA03E /* 【ppt】工程行为守则与工程行为规范标准培训.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 982A6EBE2840758500AEA03E /* 【ppt】工程行为守则与工程行为规范标准培训.pdf */; };
 		B124E54BA51C9B8A8BDA1F89 /* Pods_PDF_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC160FE15559A6B126D43ECC /* Pods_PDF_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,10 +27,10 @@
 		3FEBE30B1F01E84F00DE2722 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FEBE30E1F01E84F00DE2722 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FEBE3101F01E84F00DE2722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FF14BFA24AB2CCE001209ED /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		982A6E4C283F5B8C00AEA03E /* PDF-Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDF-Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		982A6E4D283F5B8C00AEA03E /* NSObject+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Ext.h"; sourceTree = "<group>"; };
 		982A6E4E283F5B8C00AEA03E /* NSObject+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Ext.m"; sourceTree = "<group>"; };
+		982A6EBE2840758500AEA03E /* 【ppt】工程行为守则与工程行为规范标准培训.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "【ppt】工程行为守则与工程行为规范标准培训.pdf"; sourceTree = "<group>"; };
 		BC160FE15559A6B126D43ECC /* Pods_PDF_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDF_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,6 +67,7 @@
 		3FEBE3031F01E84F00DE2722 /* PDF-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				982A6EBE2840758500AEA03E /* 【ppt】工程行为守则与工程行为规范标准培训.pdf */,
 				3FEBE3041F01E84F00DE2722 /* AppDelegate.swift */,
 				3FEBE3061F01E84F00DE2722 /* ViewController.swift */,
 				982A6E4D283F5B8C00AEA03E /* NSObject+Ext.h */,
@@ -75,7 +76,6 @@
 				3FEBE30B1F01E84F00DE2722 /* Assets.xcassets */,
 				3FEBE30D1F01E84F00DE2722 /* LaunchScreen.storyboard */,
 				3FEBE3101F01E84F00DE2722 /* Info.plist */,
-				3FF14BFA24AB2CCE001209ED /* sample.pdf */,
 				982A6E4C283F5B8C00AEA03E /* PDF-Demo-Bridging-Header.h */,
 			);
 			path = "PDF-Demo";
@@ -160,9 +160,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FEBE30F1F01E84F00DE2722 /* LaunchScreen.storyboard in Resources */,
-				3FF14BFB24AB2CCE001209ED /* sample.pdf in Resources */,
 				3FEBE30C1F01E84F00DE2722 /* Assets.xcassets in Resources */,
 				3FEBE30A1F01E84F00DE2722 /* Main.storyboard in Resources */,
+				982A6EBF2840758500AEA03E /* 【ppt】工程行为守则与工程行为规范标准培训.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
