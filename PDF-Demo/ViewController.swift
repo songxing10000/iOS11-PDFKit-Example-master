@@ -152,56 +152,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         pdf.displayMode = .singlePage
         pdf.displayDirection = .horizontal
         pdf.autoScales = true
-        
-        // 添加左右滑动手势
-        leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondLeftSwipeGesture ))
-        leftSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.left]
-        pdf.addGestureRecognizer(leftSwipeGesture!)
-        
-        rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondRightSwipeGesture ))
-        rightSwipeGesture?.direction = [UISwipeGestureRecognizer.Direction.right]
-        pdf.addGestureRecognizer(rightSwipeGesture!)
-        
-        leftSwipeGesture?.delegate = self
-        leftSwipeGesture?.cancelsTouchesInView = false
-        rightSwipeGesture?.delegate = self
-        rightSwipeGesture?.cancelsTouchesInView = false
+        // 这个方法好啊，自动添加左右滑动，滑动效果好，流畅
+        // 不用自己添加左右滑动手势了,且自己添加左右滑动手势，滑动太生硬
+        pdf.usePageViewController(true, withViewOptions: [UIPageViewController.OptionsKey.interPageSpacing: 10])
+
         return pdf
+         
     }
-    // MARK: - 左中滑动手势切换页码
-    @objc func respondLeftSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-        if pdfview.document == nil { return }
-        let scaleOfPdf = pdfview.scaleFactor
-        pdfview.goToNextPage(self)
-        pdfview.scaleFactor = scaleOfPdf
-    }
-    
-    @objc func respondRightSwipeGesture(_ sender: UISwipeGestureRecognizer) {
-        if pdfview.document == nil { return }
-        let scaleOfPdf = pdfview.scaleFactor
-        pdfview.goToPreviousPage(self)
-        pdfview.scaleFactor = scaleOfPdf
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return gestureRecognizer == leftSwipeGesture
-        || gestureRecognizer == rightSwipeGesture
-        || otherGestureRecognizer == leftSwipeGesture
-        || otherGestureRecognizer == rightSwipeGesture
-    }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let _ = gestureRecognizer as? UIPanGestureRecognizer else { return false }
-        return otherGestureRecognizer == leftSwipeGesture
-        || otherGestureRecognizer == rightSwipeGesture
-    }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let _ = otherGestureRecognizer as? UIPanGestureRecognizer else { return false }
-        return gestureRecognizer == leftSwipeGesture
-        || gestureRecognizer == rightSwipeGesture
-    }
+     
 }
 
 
