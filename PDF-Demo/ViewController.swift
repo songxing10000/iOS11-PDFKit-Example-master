@@ -10,7 +10,7 @@ import UIKit
 import PDFKit
 import SnapKit
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate {
+class ViewController: UIViewController  {
     private lazy var pdfContentView: UIView = buildPdfContentView()
     private lazy var pdfdocument: PDFDocument? = buildPdfdocument()
     private lazy var pdfview: PDFView = buildPdfview()
@@ -18,9 +18,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     private lazy var m_btn: UIButton = buildBtn()
     /// 当前界面显示为竖屏状态
     private var m_theCurrentInterfaceIsDisplayed:Bool = true
-    
-    private var leftSwipeGesture: UISwipeGestureRecognizer?
-    private var rightSwipeGesture: UISwipeGestureRecognizer?
     
     override var shouldAutorotate: Bool {
         return true
